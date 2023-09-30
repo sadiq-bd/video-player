@@ -23,14 +23,16 @@
     <script>
         let urlInput = document.getElementById('videoURL');
         let playerContainer = document.getElementById('playerContainer');
-        urlInput.addEventListener('keyup', e => {
-            if (urlInput.value.length > 4) {
-                playerContainer.innerHTML = `
-                    <video width="720" controls>
-                        <source src="${urlInput.value}" id="player">
-                    </video>
-                `;
-            }
+        ['keyup', 'change'].forEach(event => {
+            urlInput.addEventListener(event, e => {
+                if (urlInput.value.length > 4) {
+                    playerContainer.innerHTML = `
+                        <video width="720" controls preload="none">
+                            <source src="${urlInput.value}" id="player">
+                        </video>
+                    `;
+                }
+            });
         });
     </script>
 </body>
